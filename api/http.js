@@ -1,8 +1,10 @@
 import { appConfigs } from '../utils/config.js'
 import { getCurrentPageUrl } from '../utils/util.js'
 const md5 = require('../utils/md5.js')
+import notifyError from '../libs/debug.js'
 
 function request (url, data = {}, method) {
+  let args = arguments
   return new Promise((resolve, reject) => {
     let timesTamp = parseInt(new Date().getTime() / 1000)
     let { appKey, appSecret } = appConfigs
@@ -11,9 +13,6 @@ function request (url, data = {}, method) {
       header: {
         'content-type': 'application/json',
         'Accept': 'application/json',
-        // 'Lc-Appkey': appKey,
-        // 'Lc-Sign': md5.hexMD5(appKey + timesTamp + appSecret),
-        // 'Lc-Timestamp': timesTamp,
         'Session': wx.getStorageSync('sessionId') || ''
       },
       data: data,
@@ -34,9 +33,13 @@ function request (url, data = {}, method) {
           reject(res.data)
           return;
         }
+        if (res.data.status !== 200) {
+          reject(res.data)
+        }
         resolve(res.data)
       },
       fail: err => {
+        // notifyError(err, 2)
         reject(err.data)
       }
     })
