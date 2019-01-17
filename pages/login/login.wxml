@@ -1,0 +1,9 @@
+<!--pages/login/login.wxml-->
+<view class="login">
+  <image class="logo" src="../../assets/images/login.jpg"></image>
+  <text class="tit">买新车</text>
+  <view class="line"></view>
+  <text class="tip">网页由该公众号开发，请确认授权以下信息</text>
+  <text class="tip-item">· 网页由该公众号开发，请确认授权以下信息</text>
+  <button open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" class="submit-btn">确认登录</button>
+</view>

@@ -1,0 +1,11 @@
+.index {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.index image {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  margin-bottom: 20rpx;
+}

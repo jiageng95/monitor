@@ -1,0 +1,8 @@
+<!--index.wxml-->
+<view class="index">
+  <image src="{{indexInfo.avatar_url}}"></image>
+  <view>{{indexInfo.nick_name}}</view>
+  <view>{{indexInfo.sex === 1 ? '男' : '女'}}</view>
+  <view>{{indexInfo.city}}</view>
+  <button bindtap="jumpArticle">跳转文章页</button>
+</view>

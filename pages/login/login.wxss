@@ -1,0 +1,56 @@
+/* pages/login/login.wxss */
+page {
+  background: #F0F2F5;
+}
+.login {
+  padding-top: 100rpx;
+  padding-left: 70rpx;
+  padding-right: 70rpx;
+}
+.logo {
+  width: 192rpx;
+  height: 192rpx;
+  margin: 0 auto;
+  border-radius: 50%;
+  display: block;
+  margin-bottom: 30rpx;
+}
+.tit {
+  width: 100%;
+  font-size: 40rpx;
+  color: #3B3A3E;
+  line-height: 1;
+  margin-bottom: 38rpx;
+  text-align: center;
+  display: block;
+}
+.line {
+  width: 100%;
+  height: 1rpx;
+  background: #D9DDE5;
+  margin-bottom: 32rpx;
+}
+.tip {
+  font-size: 32rpx;
+  color: #3B3A3E;
+  text-align: center;
+  width: 100%;
+  line-height: 1;
+  display: block;
+  margin-bottom: 30rpx;
+}
+.tip-item {
+  font-size: 28rpx;
+  color: #999;
+  line-height: 1;
+  display: block;
+  margin-bottom: 60rpx;
+}
+.submit-btn {
+  background: #2DBC58;
+  border-radius: 4rpx;
+  color: #fff;
+  font-size: 32rpx;
+  outline: none;
+  border: none;
+}

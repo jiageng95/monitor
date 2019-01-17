@@ -1,0 +1,4 @@
+<!--pages/article/article.wxml-->
+<view class="article">
+  <web-view src="https://juejin.im/post/5c3ed794e51d45517624e44c"></web-view>
+</view>
