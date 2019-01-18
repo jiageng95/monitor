@@ -6,5 +6,7 @@ App({
   },
   globalData: {
     userInfo: null
+  },
+  onError: function () {
   }
 })

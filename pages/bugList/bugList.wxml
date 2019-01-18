@@ -1,0 +1,14 @@
+<!--pages/bugList/bugList.wxml-->
+<view class="bug-list">
+  <wux-filterbar items="{{ items }}" bind:change="onChange" bind:open="onOpen" bind:close="onClose" />
+  <!-- <wux-wing-blank size="default" wx:for="{{bugList}}" wx:key="{{index}}">
+    <wux-card title="卡片标题" extra="额外内容" wx:if="{{item.type === 1}}">
+      <view slot="body">卡片内容</view>
+      <view slot="footer">尾部内容</view>
+    </wux-card>
+    <wux-card title="{{item.url}}" extra="状态码:{{item.status || item.statusCode || 'fail'}}" wx:if="{{item.type === 2}}">
+      <view slot="body">卡片内容</view>
+      <view slot="footer">{{item.createTime}}</view>
+    </wux-card>
+  </wux-wing-blank> -->
+</view>

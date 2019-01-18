@@ -2,12 +2,13 @@
   "pages": [
     "pages/index/index",
     "pages/login/login",
-    "pages/article/article"
+    "pages/article/article",
+    "pages/bugList/bugList"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "测试",
+    "navigationBarTitleText": "个人",
     "navigationBarTextStyle": "black"
   }
 }

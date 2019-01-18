@@ -2,14 +2,19 @@ const URL = 'http://127.0.0.1:7001/debug/submit'
 const originRequest = wx.request;
 const originApp = App;
 App = function (app) {
-  let methodArr = ['onLaunch', 'onShow', 'onHide', 'onError']
-  methodArr.forEach(methodName => {
-    app[methodName] = function (options) {
-      if (methodName === 'onError') {
-        notifyError(options, 1)
-      }
-    }
-  })
+  let onErrorFn = app.onError
+  app.onError = function (err) {
+    notifyError(err, 1)
+    return onErrorFn.apply(this, arguments)
+  }
+  // let methodArr = ['onLaunch', 'onShow', 'onHide', 'onError']
+  // methodArr.forEach(methodName => {
+  //   app[methodName] = function (options) {
+  //     if (methodName === 'onError') {
+  //       notifyError(options, 1)
+  //     }
+  //   }
+  // })
   originApp(app) // 执行用户定义的方法
 }
 Object.defineProperty(wx, 'request', {
@@ -41,7 +46,7 @@ Object.defineProperty(wx, 'request', {
         data.msg = res.message || ''
         notifyError(data, 2)
       } else if (res.data && res.data.status !== 200) {
-        data.status = res.data.status || ''
+        data.status = res.data.status || null
         data.msg = res.data.msg || ''
         notifyError(data, 2)
       }
