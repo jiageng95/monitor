@@ -6,7 +6,7 @@ App = function (app) {
   methodArr.forEach(methodName => {
     app[methodName] = function (options) {
       if (methodName === 'onError') {
-        notifyError(options, 'script')
+        notifyError(options, 1)
       }
     }
   })
@@ -21,7 +21,7 @@ Object.defineProperty(wx, 'request', {
     let failFn = config.fail
     let successFn = config.success
     let data = {
-      type: 'request',
+      type: 2,
       data: config.data,
       method: config.method || 'GET',
       url: config.url,
@@ -32,25 +32,25 @@ Object.defineProperty(wx, 'request', {
     }
     config.fail = function (err) {
       data.msg = err.errMsg
-      notifyError(data, 'request')
+      notifyError(data, 2)
       return failFn.apply(this, arguments)
     }
     config.success = function (res) {
+      data.statusCode = res.statusCode
       if (res.statusCode !== 200) {
-        data.statusCode = res.statusCode
-        data.msg = res.message
-        notifyError(data, 'request')
+        data.msg = res.message || ''
+        notifyError(data, 2)
       } else if (res.data && res.data.status !== 200) {
-        data.status = res.data.status
-        data.msg = res.data.msg
-        notifyError(data, 'request')
+        data.status = res.data.status || ''
+        data.msg = res.data.msg || ''
+        notifyError(data, 2)
       }
       return successFn.apply(this, arguments)
     }
     return originRequest.apply(this, arguments);
   }
 })
-export default function notifyError (errRow, type) {
+export default function notifyError (errRow, type) { // type: 1. script  2. request
   let { brand, model, version, system, platform, SDKVersion } = wx.getSystemInfoSync()
   let data = {
     type,
@@ -73,7 +73,7 @@ export default function notifyError (errRow, type) {
     platform,
     SDKVersion
   }
-  if (type === 'script') {
+  if (type === 1) {
     let errArr = errRow.split('at ')
     let errType = errArr[1].split('\n')[1].split(':')[0]
     let errMsg = errArr[0].split('\n')[1]
@@ -85,7 +85,7 @@ export default function notifyError (errRow, type) {
       errFn,
       errPath
     })
-  } else if (type === 'request') {
+  } else if (type === 2) {
     Object.assign(data, errRow)
   }
   originRequest({
