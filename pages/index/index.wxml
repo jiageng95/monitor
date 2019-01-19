@@ -10,7 +10,7 @@
   <!-- <canvas canvas-id="lineCanvas" disable-scroll="true" class="pieCanvas" style="width:100%; height:300px;"></canvas> -->
   <!-- <canvas canvas-id="areaCanvas" disable-scroll="true" class="pieCanvas" style="width:100%; height:300px;"></canvas> -->
   <view class="list">
-    <wux-badge count="{{bugData.count}}">
+    <wux-badge count="{{bugData.unreadCount}}">
       <view class="list-item" bindtap="jumpBugList">
         <wux-icon type="logo-nodejs" />
         个人

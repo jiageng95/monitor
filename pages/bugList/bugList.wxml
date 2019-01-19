@@ -1,6 +1,25 @@
 <!--pages/bugList/bugList.wxml-->
 <view class="bug-list">
   <wux-filterbar items="{{ items }}" bind:change="onChange" bind:open="onOpen" bind:close="onClose" />
+  <view class="list-item" wx:for="{{bugList}}" wx:key="{{index}}" wx:if="{{item.type === 2}}">
+    <view class="item-t">
+      <text class="item-tit">{{item.url}}</text>
+      <view class="item-tag blur">{{item.method}}</view>
+    </view>
+    <view class="item-m">
+    </view>
+    <view class="item-b">
+      <view class="item-b-l">
+        <view class="item-icon">
+          <!-- <image src="../../assets/images/http.png" mode="widthFix"></image> -->
+          <image src="../../assets/images/script.png" mode="widthFix"></image>
+          <!-- <wux-icon type="logo-javascript" size="24" /> -->
+        </view>
+        <text class="item-model">{{item.model}}</text>
+      </view>
+      <text class="item-date">创建于 {{item.createTime}}</text>
+    </view>
+  </view>
   <!-- <wux-wing-blank size="default" wx:for="{{bugList}}" wx:key="{{index}}">
     <wux-card title="卡片标题" extra="额外内容" wx:if="{{item.type === 1}}">
       <view slot="body">卡片内容</view>

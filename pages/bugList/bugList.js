@@ -1,5 +1,6 @@
 // pages/bugList/bugList.js
 import { getIndex, getArticleList, getBugList, getBugInfo } from '../../api/url.js'
+import { formatTime } from '../../utils/util.js'
 
 Page({
 

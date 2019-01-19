@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "wux-icon": "../../libs/dist/icon/index",
     "wux-filterbar": "../../libs/dist/filterbar/index",
     "wux-card": "../../libs/dist/card/index",
     "wux-wing-blank": "../../libs/dist/wing-blank/index"
