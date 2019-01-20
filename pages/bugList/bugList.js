@@ -283,7 +283,7 @@ Page({
     }
     getBugList(data).then(res => {
       res.data.forEach(item => {
-        item.createTime = new Date(item.createTime * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ')
+        item.createTime = new Date(item.createTime * 1000).toLocaleString()
       })
       this.setData({ bugList: res.data })
       // this.showCanvas()
@@ -295,6 +295,7 @@ Page({
    */
   onLoad: function (options) {
     // this.getRepos()
+    a.push()
   },
 
   /**
@@ -343,6 +344,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    
   }
 })

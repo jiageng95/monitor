@@ -43,7 +43,7 @@ page {
   align-items: center;
   justify-content: center;
   padding: 5rpx 10rpx;
-  margin: 0 30rpx;
+  margin-left: 30rpx;
 }
 .blur {
   color: #409EFF;
