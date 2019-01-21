@@ -9,11 +9,22 @@
   <!-- <canvas canvas-id="ringCanvas" disable-scroll="true" class="pieCanvas" style="width:100%; height:300px;"></canvas> -->
   <!-- <canvas canvas-id="lineCanvas" disable-scroll="true" class="pieCanvas" style="width:100%; height:300px;"></canvas> -->
   <!-- <canvas canvas-id="areaCanvas" disable-scroll="true" class="pieCanvas" style="width:100%; height:300px;"></canvas> -->
+  <input class="search-input" value="" placeholder-class="placeholder" placeholder="搜索引用该插件的小程序"></input>
+  <text class="title">绑定的小程序</text>
   <view class="list">
-    <wux-badge count="{{bugData.unreadCount}}">
+    <wux-badge class="wux-badge" count="{{bugData.unreadCount}}">
       <view class="list-item" bindtap="jumpBugList">
-        <wux-icon type="logo-nodejs" />
-        个人
+        <view class="item-l">
+          <wux-icon type="logo-nodejs" size="50" />
+          <view class="item-info">
+            <text class="item-tit">个人</text>
+            <text class="item-txt">wx09aa326f2ed38651</text>
+          </view>
+        </view>
+        <view class="item-r">
+          <text class="item-tit">{{bugData.count}}</text>
+          <text class="item-txt">累计bug</text>
+        </view>
       </view>
     </wux-badge>
   </view>

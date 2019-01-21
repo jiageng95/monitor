@@ -295,7 +295,6 @@ Page({
    */
   onLoad: function (options) {
     // this.getRepos()
-    a.push()
   },
 
   /**

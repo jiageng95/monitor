@@ -1,18 +1,88 @@
 .index {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 50rpx;
+  padding: 0 20rpx;
+}
+.title {
+  width: 100%;
+  display: block;
+  font-size: 30rpx;
+  color: #cecece;
+  margin-bottom: 20rpx;
 }
 .list {
   display: flex;
+  width: 100%;
 }
 .list .list-item {
-  width: 200rpx;
-  height: 200rpx;
+  width: 100%;
+  height: 180rpx;
   border-radius: 15rpx;
-  border: 1rpx solid #ebebeb;
+  /* border: 1rpx solid #ebebeb; */
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
+  padding: 30rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: 0 5rpx 20rpx #ebebeb;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.list .list-item:active {
+  top: 2rpx;
+  left: 3rpx;
+  box-shadow: none;
+  border: 1rpx solid #ebebeb;
+}
+.list .list-item .item-l {
+  display: flex;
+  align-items: center;
+}
+.list .list-item .item-l .item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 20rpx;
+}
+.list .list-item .item-l .item-info .item-tit {
+  font-size: 36rpx;
+  color: #1e1e1e;
+  margin-bottom: 10rpx;
+}
+.list .list-item .item-l .item-info .item-txt {
+  font-size: 30rpx;
+  color: #999aa2;
+}
+.list .list-item .item-r {
+  float: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.list .list-item .item-r .item-tit {
+  font-size: 36rpx;
+  color: #1e1e1e;
+  text-align: right;
+  margin-bottom: 10rpx;
+}
+.list .list-item .item-r .item-txt {
+  font-size: 30rpx;
+  color: #999aa2;
+}
+.wux-badge {
+  width: 100%;
+}
+
+.search-input {
+  margin-bottom: 30rpx;
+  width: 100%;
+  height: auto;
+  background: #f8f8f8;
+  font-size: 24rpx;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+  border-radius: 6rpx;
+}
+.placeholder {
+  color: #999aa2;
 }
