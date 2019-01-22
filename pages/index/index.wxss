@@ -23,7 +23,7 @@
   padding: 30rpx;
   box-sizing: border-box;
   overflow: hidden;
-  box-shadow: 0 5rpx 20rpx #ebebeb;
+  box-shadow: 0 5rpx 20rpx #ddd;
   position: relative;
   top: 0;
   left: 0;
@@ -32,7 +32,8 @@
   top: 2rpx;
   left: 3rpx;
   box-shadow: none;
-  border: 1rpx solid #ebebeb;
+  border-bottom: 1rpx solid #ddd;
+  border-right: 1rpx solid #ddd;
 }
 .list .list-item .item-l {
   display: flex;

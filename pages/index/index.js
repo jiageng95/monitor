@@ -116,6 +116,11 @@ Page({
       url: '../bugList/bugList',
     })
   },
+  jumpBugDetail: function () {
+    wx.navigateTo({
+      url: '../bugDetail/bugDetail',
+    })
+  },
   // 获取bug信息
   getBugInfo: function () {
     getBugInfo().then(res => {
