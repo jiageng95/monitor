@@ -1,20 +1,41 @@
 /* pages/bugList/bugList.wxss */
 page {
-  background: #f1f1f1;
+  /* background: #f1f1f1; */
+}
+.filter {
+
+}
+.filter .type-list {
+  width: 100%;
+  display: flex;
+  padding-bottom: 20rpx;
+}
+.filter .type-list .item {
+  padding: 10rpx 35rpx;
+  color: rgb(200, 200, 206);
+  border: 1rpx solid rgb(200, 200, 206);
+  font-size: 26rpx;
+  border-radius: 35rpx;
+  margin-right: 40rpx;
+}
+.filter .type-list .item.cur {
+  background: rgb(106, 113, 209);
+  border: 1rpx solid rgb(106, 113, 209);
+  color: #fff;
+}
+.list-date {
+  font-size: 26rpx;
+  color: #1e1e1e;
 }
 .bug-list {
-  /* padding: 30rpx 0; */
-}
-.wux-wingblank {
-  padding: 30rpx 0;
-  margin-bottom: 20rpx;
+  padding: 0 20rpx;
 }
 .list-item {
-  margin: 20rpx 20rpx;
+  margin: 20rpx 0;
   background: #fefefe;
   border-radius: 10rpx;
   box-sizing: border-box;
-  box-shadow: 0 10rpx 10rpx #efefef;
+  box-shadow: 0 5rpx 20rpx #ddd;
 }
 .list-item .item-t {
   padding: 20rpx;
