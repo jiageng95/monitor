@@ -36,3 +36,8 @@
   color: #333;
   flex: 1;
 }
+.bug-info .info-list .list-item .item-r text {
+  display: block;
+  width: 100%;
+  word-break: break-all;
+}

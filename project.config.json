@@ -47,10 +47,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "bug详情",
 					"pathName": "pages/bugDetail/bugDetail",
-					"query": "id=1"
+					"query": "id=3"
 				}
 			]
 		}

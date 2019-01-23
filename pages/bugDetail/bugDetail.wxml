@@ -13,7 +13,7 @@
   <!-- 错误信息 -->
   <view class="bug-info">
     <text class="info-tit">错误信息</text>
-    <view class="info-list">
+    <view class="info-list" wx:if="{{bugData.type === 1}}">
       <view class="list-item">
         <view class="item-l">类型</view>
         <view class="item-r">{{bugData.errType}}</view>
@@ -29,6 +29,30 @@
       <view class="list-item">
         <view class="item-l">路径</view>
         <view class="item-r">{{bugData.errPath}}</view>
+      </view>
+    </view>
+    <view class="info-list" wx:if="{{bugData.type === 2}}">
+      <view class="list-item">
+        <view class="item-l">类型</view>
+        <view class="item-r">{{bugData.method}}</view>
+      </view>
+      <view class="list-item">
+        <view class="item-l">URL</view>
+        <view class="item-r">{{bugData.url}}</view>
+      </view>
+      <view class="list-item">
+        <view class="item-l">参数</view>
+        <view class="item-r">
+          <text wx:for="{{bugData.dataArr}}" wx:key="{{index}}">{{item}}</text>
+          <text wx:if="{{!bugData.dataArr.length}}">{ }</text>
+        </view>
+      </view>
+      <view class="list-item">
+        <view class="item-l">请求头</view>
+        <view class="item-r">
+          <text wx:for="{{bugData.headerArr}}" wx:key="{{index}}">{{item}}</text>
+          <text wx:if="{{!bugData.headerArr.length}}">{ }</text>
+        </view>
       </view>
     </view>
   </view>

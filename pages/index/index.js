@@ -129,6 +129,7 @@ Page({
     })
   },
   onLoad: function (options) {
+    a.push()
   },
   onShow: function () {
     // this.getBugList()

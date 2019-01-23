@@ -7,6 +7,10 @@ class debugLog {
   constructor() {
     // super()
     this.breadcrumbs = []
+    this.config = {
+      appKey: '',
+      appName: 'test'
+    }
     this.systemInfo = this.getSystemInfo()
     this.interceptApp()
     this.interceptPage()
@@ -97,9 +101,12 @@ class debugLog {
 
   // 上报bug
   notifyError(errRow, type) { // type: 1. script  2. request
+    let { appKey, appName } = this.config
     let { brand, model, version, system, platform, SDKVersion } = this.systemInfo
     let data = {
       type,
+      appKey,
+      appName,
       createTime: Math.floor(+new Date() / 1000),
       errMsg: null,
       errType: null,
