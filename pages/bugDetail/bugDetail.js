@@ -1,18 +1,32 @@
 // pages/bugDetail/bugDetail.js
+import { getBugInfo } from '../../api/url.js'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    id: '',
+    bugData: {}
   },
-
+  // 获取bug信息
+  getBugInfo: function () {
+    let data = {
+      id: this.data.id
+    }
+    getBugInfo(data).then(res => {
+      res.data.createTime = new Date(res.data.createTime * 1000).toLocaleString()
+      this.setData({ bugData: res.data })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let id = +options.id || ''
+    this.setData({ id })
+    this.getBugInfo()
   },
 
   /**

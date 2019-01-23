@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -43,7 +43,14 @@
 				{
 					"id": -1,
 					"name": "bug列表",
-					"pathName": "pages/bugList/bugList"
+					"pathName": "pages/bugList/bugList",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "bug详情",
+					"pathName": "pages/bugDetail/bugDetail",
+					"query": "id=1"
 				}
 			]
 		}

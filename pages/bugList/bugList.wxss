@@ -1,6 +1,6 @@
 /* pages/bugList/bugList.wxss */
 page {
-  /* background: #f1f1f1; */
+  background: #fbfcfc;
 }
 .filter {
 
@@ -17,6 +17,7 @@ page {
   font-size: 26rpx;
   border-radius: 35rpx;
   margin-right: 40rpx;
+  background: #fff;
 }
 .filter .type-list .item.cur {
   background: rgb(106, 113, 209);
@@ -56,14 +57,14 @@ page {
   -webkit-box-orient: vertical;
 }
 .list-item .item-t .item-tag {
-  width: 50rpx;
+  /* width: 50rpx; */
   height: 30rpx;
   border-radius: 20rpx;
   font-size: 20rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5rpx 10rpx;
+  padding: 5rpx 15rpx;
   margin-left: 30rpx;
 }
 .blur {
@@ -75,6 +76,11 @@ page {
   color: #67c23a;
   background-color: rgba(103,194,58,.1);
   border-color: rgba(103,194,58,.2);
+}
+.danger {
+  color: #fff;
+  background-color: rgb(247, 151, 151);
+  border-color: rgb(250, 143, 143);
 }
 .list-item .item-m {
   padding: 0 20rpx 20rpx 20rpx;

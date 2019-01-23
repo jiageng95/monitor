@@ -1,4 +1,61 @@
 <!--pages/bugDetail/bugDetail.wxml-->
 <view class="bugDetail">
-  
+  <!-- 概要信息 -->
+  <view class="bug-info">
+    <text class="info-tit">概要信息</text>
+    <view class="info-list">
+      <view class="list-item">
+        <view class="item-l">时间</view>
+        <view class="item-r">{{bugData.createTime}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 错误信息 -->
+  <view class="bug-info">
+    <text class="info-tit">错误信息</text>
+    <view class="info-list">
+      <view class="list-item">
+        <view class="item-l">类型</view>
+        <view class="item-r">{{bugData.errType}}</view>
+      </view>
+      <view class="list-item">
+        <view class="item-l">信息</view>
+        <view class="item-r">{{bugData.errMsg}}</view>
+      </view>
+      <view class="list-item">
+        <view class="item-l">方法</view>
+        <view class="item-r">{{bugData.errFn}}</view>
+      </view>
+      <view class="list-item">
+        <view class="item-l">路径</view>
+        <view class="item-r">{{bugData.errPath}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 设备信息 -->
+  <view class="bug-info">
+    <text class="info-tit">设备信息</text>
+    <view class="info-list">
+      <view class="list-item">
+        <view class="item-l">品牌</view>
+        <view class="item-r">{{bugData.brand}}</view>
+      </view>
+      <view class="list-item">
+        <view class="item-l">型号</view>
+        <view class="item-r">{{bugData.model}}</view>
+      </view>
+      <view class="list-item">
+        <view class="item-l">操作系统</view>
+        <view class="item-r">{{bugData.system}}</view>
+      </view>
+      <view class="list-item">
+        <view class="item-l">平台</view>
+        <view class="item-r">{{bugData.platform}}</view>
+      </view>
+      <view class="list-item">
+        <view class="item-l">微信版本号</view>
+        <view class="item-r">{{bugData.version}}</view>
+      </view>
+    </view>
+  </view>
 </view>

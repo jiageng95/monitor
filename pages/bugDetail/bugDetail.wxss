@@ -1,1 +1,38 @@
 /* pages/bugDetail/bugDetail.wxss */
+.bugDetail {
+  padding: 20rpx;
+  background: #fbfcfc;
+}
+.bug-info {
+  width: 100%;
+  background: #fff;
+  border-radius: 6rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  box-shadow: 0 0 10rpx #ddd;
+  margin-bottom: 30rpx;
+}
+.bug-info .info-tit {
+  font-size: 30rpx;
+  color: #4BA0BE;
+  margin-bottom: 20rpx;
+  display: block;
+}
+.bug-info .info-list {
+  display: flex;
+  flex-direction: column;
+}
+.bug-info .info-list .list-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 30rpx;
+  margin-bottom: 15rpx;
+}
+.bug-info .info-list .list-item .item-l {
+  color: #999aa2;
+  width: 200rpx;
+}
+.bug-info .info-list .list-item .item-r {
+  color: #333;
+  flex: 1;
+}

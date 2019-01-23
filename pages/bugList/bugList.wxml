@@ -7,11 +7,12 @@
   </view>
   <block wx:for="{{bugList}}" wx:key="{{index}}">
     <text class="list-date" wx:if="{{item.date}}">{{item.date}}</text>
-    <view class="list-item">
+    <view class="list-item" bindtap="jumpDetail" data-id="{{item.id}}">
       <view class="item-t">
-        <text class="item-tit" wx:if="{{item.type === 1}}">{{item.errType.trim() ? item.errType + ': ' : ''}}{{item.errMsg}}</text>
+        <text class="item-tit" wx:if="{{item.type === 1}}">{{item.errMsg}}</text>
         <text class="item-tit" wx:if="{{item.type === 2}}">{{item.url}}</text>
-        <view class="item-tag blur" wx:if="{{item.type === 2}}">{{item.method}}</view>
+        <view class="item-tag danger" wx:if="{{item.type === 1 && item.errType}}">{{item.errType}}</view>
+        <view class="item-tag {{item.method === 'GET' ? 'blur' : 'green'}}" wx:if="{{item.type === 2}}">{{item.method}}</view>
       </view>
       <!-- <view class="item-m">
       </view> -->

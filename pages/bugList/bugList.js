@@ -1,5 +1,5 @@
 // pages/bugList/bugList.js
-import { getIndex, getArticleList, getBugList, getBugInfo } from '../../api/url.js'
+import { getIndex, getArticleList, getBugList } from '../../api/url.js'
 import { formatTime } from '../../utils/util.js'
 
 Page({
@@ -9,11 +9,13 @@ Page({
    */
   data: {
     bugList: [],
-    typeList: ['全部', '代码异常', '接口请求'],
+    typeList: ['全部', '执行错误', '接口请求'],
     type: 0,
     dateArr: [],
     page: 1,
-    pageLimit: 20
+    pageLimit: 10,
+    counts: 0,
+    nodata: false
   },
   // 切换类型
   changeType: function (e) {
@@ -31,8 +33,9 @@ Page({
       pageLimit
     }
     getBugList(data).then(res => {
-      res.data.forEach(item => {
+      res.data.bugList.forEach(item => {
         item.createTime = new Date(item.createTime * 1000).toLocaleString()
+        item.errType = item.errType && item.errType.replace(/(^\s*)|(\s*$)/g, '')
         if (this.data.dateArr.includes(item.createTime.split(' ')[0])) {
           item.date = ''
         } else {
@@ -44,8 +47,18 @@ Page({
           this.setData({ dateArr })
         }
       })
-      this.setData({ bugList: res.data })
-      // this.showCanvas()
+      let newBugList = this.data.bugList.concat(res.data.bugList)
+      if (res.data.bugList.length < this.data.pageLimit) {
+        this.setData({ nodata: true })
+      } else {
+      }
+      this.setData({ bugList: newBugList, counts: res.data.counts })
+    })
+  },
+  jumpDetail: function (e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '../bugDetail/bugDetail?id=' + id,
     })
   },
 
@@ -95,7 +108,10 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (!this.data.nodata) {
+      let page = ++this.data.page
+      this.getBugList()
+    }
   },
 
   /**

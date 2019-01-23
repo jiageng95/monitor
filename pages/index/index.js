@@ -1,12 +1,12 @@
 //index.js
-import { getIndex, getArticleList, getBugInfo } from '../../api/url.js'
+import { getIndex, getArticleList, getBugCount } from '../../api/url.js'
 var wxCharts = require('../../libs/wxcharts-min.js')
 
 Page({
   data: {
     indexInfo: {},
     bugList: [],
-    bugData: {}
+    bugCountData: {}
   },
   showCanvas: function () {
     // new wxCharts({
@@ -122,10 +122,10 @@ Page({
     })
   },
   // 获取bug信息
-  getBugInfo: function () {
-    getBugInfo().then(res => {
+  getBugCount: function () {
+    getBugCount().then(res => {
       console.log(res.data)
-      this.setData({ bugData: res.data })
+      this.setData({ bugCountData: res.data })
     })
   },
   onLoad: function (options) {
@@ -133,11 +133,10 @@ Page({
   onShow: function () {
     // this.getBugList()
     this.getIndex()
-    this.getBugInfo()
+    this.getBugCount()
     // this.getArticleList()
   },
   onShareAppMessage: function () {
-    title.psu
     return {
       title: '2222'
     }
