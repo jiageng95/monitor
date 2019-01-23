@@ -13,7 +13,7 @@
   <text class="title">绑定的小程序</text>
   <view class="list">
     <wux-badge class="wux-badge" count="{{bugData.unreadCount}}">
-      <view class="list-item" bindtap="jumpBugList">
+      <view class="list-item" bindtap="">
         <view class="item-l">
           <wux-icon type="logo-nodejs" size="50" />
           <view class="item-info">
