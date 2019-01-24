@@ -5,6 +5,14 @@
     <text class="info-tit">概要信息</text>
     <view class="info-list">
       <view class="list-item">
+        <view class="item-l">名称</view>
+        <view class="item-r">{{bugData.appName}}</view>
+      </view>
+      <view class="list-item">
+        <view class="item-l">appId</view>
+        <view class="item-r">{{bugData.appKey}}</view>
+      </view>
+      <view class="list-item">
         <view class="item-l">时间</view>
         <view class="item-r">{{bugData.createTime}}</view>
       </view>

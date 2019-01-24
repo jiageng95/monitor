@@ -35,6 +35,7 @@
 .bug-info .info-list .list-item .item-r {
   color: #333;
   flex: 1;
+  word-break: break-all;
 }
 .bug-info .info-list .list-item .item-r text {
   display: block;

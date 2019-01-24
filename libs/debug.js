@@ -133,7 +133,7 @@ class debugLog {
       let errMsg = errArr[0].split('\n')[1]
       let errFn = errArr[2].split('(')[0]
       let errPath = errArr[2].split('appservice/')[1].split(':')[0]
-      if (errFn === 'e') return
+      if (errFn.replace(/(^\s*)|(\s*$)/g, '') === 'e') return
       Object.assign(data, {
         errMsg,
         errType,

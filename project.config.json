@@ -50,7 +50,7 @@
 					"id": 2,
 					"name": "bug详情",
 					"pathName": "pages/bugDetail/bugDetail",
-					"query": "id=3"
+					"query": "id=760"
 				}
 			]
 		}

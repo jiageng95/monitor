@@ -17,11 +17,19 @@ Page({
     counts: 0,
     nodata: false
   },
+  // 重置表单
+  resetForm: function () {
+    let dateArr = []
+    let bugList = []
+    let page = 1
+    let nodata = false
+    this.setData({ dateArr, bugList, page, nodata })
+  },
   // 切换类型
   changeType: function (e) {
     let type = +e.currentTarget.dataset.type
-    let dateArr = []
-    this.setData({ type, dateArr })
+    this.resetForm()
+    this.setData({ type })
     this.getBugList()
   },
   // 获取bug列表

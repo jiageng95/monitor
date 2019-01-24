@@ -9,16 +9,16 @@
   <!-- <canvas canvas-id="ringCanvas" disable-scroll="true" class="pieCanvas" style="width:100%; height:300px;"></canvas> -->
   <!-- <canvas canvas-id="lineCanvas" disable-scroll="true" class="pieCanvas" style="width:100%; height:300px;"></canvas> -->
   <!-- <canvas canvas-id="areaCanvas" disable-scroll="true" class="pieCanvas" style="width:100%; height:300px;"></canvas> -->
-  <input class="search-input" value="" placeholder-class="placeholder" placeholder="搜索引用该插件的小程序"></input>
+  <input class="search-input" value="{{name}}" placeholder-class="placeholder" placeholder="搜索引用该插件的小程序" bindinput="changeName" bindconfirm="confirmSearch"></input>
   <text class="title">绑定的小程序</text>
   <view class="list">
-    <wux-badge class="wux-badge" count="{{bugCountData.unreadCount}}">
-      <view class="list-item" bindtap="jumpBugList">
+    <wux-badge class="wux-badge" count="{{bugCountData.unreadCount}}" wx:if="{{appList.length}}">
+      <view class="list-item" bindtap="jumpBugList" wx:for="{{appList}}" wx:key="{{index}}">
         <view class="item-l">
           <wux-icon type="logo-nodejs" size="50" />
           <view class="item-info">
-            <text class="item-tit">个人</text>
-            <text class="item-txt">wx09aa326f2ed38651</text>
+            <text class="item-tit">{{item.appName}}</text>
+            <text class="item-txt">{{item.appKey}}</text>
           </view>
         </view>
         <view class="item-r">

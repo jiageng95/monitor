@@ -9,3 +9,4 @@ export const notifyError = (data) => request(baseUrl + '/debug/submit', data, 'P
 export const getBugList = (data) => request(baseUrl + '/debug/getBugList', data) // 获取bug列表
 export const getBugCount = (data) => request(baseUrl + '/debug/getBugCount', data) // 获取bug数量
 export const getBugInfo = (data) => request(baseUrl + '/debug/getBugInfo', data) // 获取bug信息
+export const getAppList = (data) => request(baseUrl + '/debug/getAppList', data) // 获取小程序列表
