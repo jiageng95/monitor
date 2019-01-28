@@ -1,6 +1,7 @@
 import request from './http.js'
 
-const baseUrl = 'http://127.0.0.1:7001' // 测试
+// const baseUrl = 'https://127.0.0.1:7001' // 测试
+const baseUrl = 'http://39.108.233.104:7001' // 正式
 
 export const login = (data) => request(baseUrl + '/auth/login', data, 'POST') // 登录
 export const getIndex = (data) => request(baseUrl + '/user/info', data) // 获取首页
