@@ -4,7 +4,6 @@ const md5 = require('../utils/md5.js')
 import notifyError from '../libs/debug.js'
 
 function request (url, data = {}, method) {
-  let args = arguments
   return new Promise((resolve, reject) => {
     let timesTamp = parseInt(new Date().getTime() / 1000)
     let { appKey, appSecret } = appConfigs
