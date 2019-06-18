@@ -26,7 +26,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 30rpx;
-  margin-bottom: 15rpx;
+  margin-bottom: 25rpx;
 }
 .bug-info .info-list .list-item .item-l {
   color: #999aa2;
@@ -41,4 +41,16 @@
   display: block;
   width: 100%;
   word-break: break-all;
+}
+.bug-info .info-list .list-item .item-r .item-txt .header-tit {
+  font-weight: 800;
+}
+.bug-info .info-list .list-item .item-r .item-txt .header-txt {
+  color: #4BA0BE;
+}
+.bug-info .info-list .list-item .error-txt {
+  color:crimson;
+}
+.bug-info .info-list .list-item .success-txt {
+  color:limegreen;
 }

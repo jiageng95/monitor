@@ -112,9 +112,10 @@ Page({
       url: '../article/article',
     })
   },
-  jumpBugList: function () {
+  jumpBugList: function (e) {
+    let appKey = e.currentTarget.dataset.appkey
     wx.navigateTo({
-      url: '../bugList/bugList',
+      url: '../bugList/bugList?appKey=' + appKey,
     })
   },
   jumpBugDetail: function () {
@@ -153,7 +154,7 @@ Page({
     // this.getBugList()
     this.getIndex()
     this.getAppList()
-    this.getBugCount()
+    // this.getBugCount()
     // this.getArticleList()
   },
   onShareAppMessage: function () {

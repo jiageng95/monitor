@@ -13,7 +13,7 @@
   <text class="title">绑定的小程序</text>
   <view class="list">
     <wux-badge class="wux-badge" count="{{bugCountData.unreadCount}}" wx:if="{{appList.length}}">
-      <view class="list-item" bindtap="jumpBugList" wx:for="{{appList}}" wx:key="{{index}}">
+      <view class="list-item" bindtap="jumpBugList" wx:for="{{appList}}" wx:key="{{index}}" data-appkey="{{item.appKey}}">
         <view class="item-l">
           <wux-icon type="logo-nodejs" size="50" />
           <view class="item-info">
@@ -22,7 +22,7 @@
           </view>
         </view>
         <view class="item-r">
-          <text class="item-tit">{{bugCountData.count}}</text>
+          <text class="item-tit">{{item.count}}</text>
           <text class="item-txt">累计bug</text>
         </view>
       </view>

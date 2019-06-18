@@ -32,7 +32,7 @@ function request (url, data = {}, method) {
           reject(res.data)
           return;
         }
-        if (res.data.status !== 200) {
+        if (res.data.code !== 200) {
           reject(res.data)
         }
         resolve(res.data)

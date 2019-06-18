@@ -1,5 +1,6 @@
 <!--pages/bugList/bugList.wxml-->
 <view class="bug-list">
+  <view class="title">环境：{{title}}</view>
   <view class="filter">
     <view class="type-list">
       <view class="item {{type === index ? 'cur' : ''}}" wx:for="{{typeList}}" wx:key="{{index}}" bindtap="changeType" data-type="{{index}}">{{item}}</view>

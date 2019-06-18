@@ -1,20 +1,26 @@
+// const URL = 'https://www.api.yuncjs.cn/debug/submit'
 const URL = 'http://127.0.0.1:7001/debug/submit'
 const originApp = App // 保存原有的App方法
 const originPage = Page // 保存原有的Page方法
 const originRequest = wx.request // 保存原有的request方法
 
 class debugLog {
-  constructor() {
+  constructor(options) {
     // super()
     this.breadcrumbs = []
     this.config = {
-      appKey: '',
-      appName: 'test'
+      appKey: '', // 小程序的appKey
+      appName: 'test', // 小程序的名字
+      debug: false, // 是否为调试模式,默认为false,即开启监控
+      ignoreCode: [] // 忽略的code码数组,即服务端返回的code码不存在与ignoreCode中,则上报
     }
+    Object.assign(this.config, options)
     this.systemInfo = this.getSystemInfo()
-    this.interceptApp()
-    this.interceptPage()
-    this.interceptRequest()
+    if (!this.config.debug) {
+      this.interceptApp()
+      this.interceptPage()
+      this.interceptRequest()
+    }
   }
   // 劫持小程序App方法
   interceptApp() {
@@ -87,8 +93,8 @@ class debugLog {
           if (res.statusCode !== 200) {
             data.msg = res.message || ''
             _self.notifyError(data, 2)
-          } else if (res.data && res.data.status !== 200) {
-            data.status = res.data.status || null
+          } else if (res.data && !_self.config.ignoreCode.includes(res.data.code)) {
+            data.status = res.data.code || null
             data.msg = res.data.msg || ''
             _self.notifyError(data, 2)
           }
@@ -192,4 +198,4 @@ class debugLog {
     }
   }
 }
-export default new debugLog()
+export default debugLog

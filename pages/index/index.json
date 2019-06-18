@@ -2,5 +2,6 @@
   "usingComponents": {
     "wux-icon": "../../libs/dist/icon/index",
     "wux-badge": "../../libs/dist/badge/index"
-  }
+  },
+  "navigationBarTitleText": "小程序列表"
 }

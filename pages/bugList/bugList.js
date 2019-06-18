@@ -15,7 +15,8 @@ Page({
     page: 1,
     pageLimit: 10,
     counts: 0,
-    nodata: false
+    nodata: false,
+    appKey: ''
   },
   // 重置表单
   resetForm: function () {
@@ -34,15 +35,25 @@ Page({
   },
   // 获取bug列表
   getBugList: function () {
-    let { type, page, pageLimit } = this.data
+    let { type, page, pageLimit, appKey } = this.data
     let data = {
+      appKey,
       type,
       page,
       pageLimit
     }
     getBugList(data).then(res => {
+      let bugObj = res.data.bugList.find(item => item.url && item.url) || {}
+      let x = 0;
+      if (bugObj.url) {
+        for (let i = 0; i < 3; i++) {
+          x = bugObj.url.indexOf('/', x + 1);
+        }
+      }
+      let title = bugObj.url ? bugObj.url.substr(0, x) : this.data.title
       res.data.bugList.forEach(item => {
-        item.createTime = new Date(item.createTime * 1000).toLocaleString()
+        item.url = item.url ? item.url.substr(x) : item.url
+        item.createTime = formatTime(new Date(item.createTime * 1000))
         item.errType = item.errType && item.errType.replace(/(^\s*)|(\s*$)/g, '')
         if (this.data.dateArr.includes(item.createTime.split(' ')[0])) {
           item.date = ''
@@ -58,9 +69,9 @@ Page({
       let newBugList = this.data.bugList.concat(res.data.bugList)
       if (res.data.bugList.length < this.data.pageLimit) {
         this.setData({ nodata: true })
-      } else {
       }
-      this.setData({ bugList: newBugList, counts: res.data.counts })
+      console.log('title', title)
+      this.setData({ bugList: newBugList, counts: res.data.counts, title })
     })
   },
   jumpDetail: function (e) {
@@ -75,6 +86,10 @@ Page({
    */
   onLoad: function (options) {
     // this.getRepos()
+    let appKey = options.appKey
+    this.setData({ appKey })
+    this.getBugList()
+
   },
 
   /**
@@ -88,7 +103,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getBugList()
   },
 
   /**

@@ -1,5 +1,6 @@
 // pages/bugDetail/bugDetail.js
 import { getBugInfo } from '../../api/url.js'
+import { formatTime } from '../../utils/util.js'
 
 Page({
 
@@ -16,14 +17,11 @@ Page({
       id: this.data.id
     }
     getBugInfo(data).then(res => {
-      res.data.createTime = new Date(res.data.createTime * 1000).toLocaleString()
-      if (res.data.type === 2) {
-        let dataParams = res.data.data
-        let headerParams = res.data.header
-        res.data.dataArr = Object.keys(dataParams).map((item, index) => `${item} = ${dataParams[item]}${index === (Object.keys(dataParams).length - 1) ? '' : ';'}`)
-        res.data.headerArr = Object.keys(headerParams).map((item, index) => `${item} = ${headerParams[item]}${index === (Object.keys(headerParams).length - 1) ? '' : ';'}`)
-      }
-      this.setData({ bugData: res.data })
+      let bugData = res.data
+      bugData.createTime = formatTime(new Date(bugData.createTime * 1000))
+      bugData.header = bugData.header && Object.keys(bugData.header).length ? bugData.header : null
+      bugData.data = bugData.data && Object.keys(bugData.data).length ? bugData.data : null
+      this.setData({ bugData })
     })
   },
   /**

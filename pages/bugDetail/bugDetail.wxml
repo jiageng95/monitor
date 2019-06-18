@@ -41,6 +41,18 @@
     </view>
     <view class="info-list" wx:if="{{bugData.type === 2}}">
       <view class="list-item">
+        <view class="item-l">报错信息</view>
+        <view class="item-r error-txt">{{bugData.msg}}</view>
+      </view>
+      <view class="list-item">
+        <view class="item-l">状态码</view>
+        <view class="item-r {{ bugData.statusCode !== 200 ? 'error-txt' : 'success-txt' }}">{{bugData.statusCode}}</view>
+      </view>
+      <view class="list-item">
+        <view class="item-l">返回code</view>
+        <view class="item-r error-txt">{{bugData.status}}</view>
+      </view>
+      <view class="list-item">
         <view class="item-l">类型</view>
         <view class="item-r">{{bugData.method}}</view>
       </view>
@@ -51,15 +63,21 @@
       <view class="list-item">
         <view class="item-l">参数</view>
         <view class="item-r">
-          <text wx:for="{{bugData.dataArr}}" wx:key="{{index}}">{{item}}</text>
-          <text wx:if="{{!bugData.dataArr.length}}">{ }</text>
+          <view class="item-txt" wx:for="{{bugData.data}}" wx:key="{{index}}">
+            <text class="header-tit">{{index}}:</text>
+            <text class="header-txt">{{item}}</text>
+          </view>
+          <text wx:if="{{!bugData.data}}">空</text>
         </view>
       </view>
       <view class="list-item">
         <view class="item-l">请求头</view>
         <view class="item-r">
-          <text wx:for="{{bugData.headerArr}}" wx:key="{{index}}">{{item}}</text>
-          <text wx:if="{{!bugData.headerArr.length}}">{ }</text>
+          <view class="item-txt" wx:for="{{bugData.header}}" wx:key="{{index}}">
+            <text class="header-tit">{{index}}:</text>
+            <text class="header-txt">{{item}}</text>
+          </view>
+          <text wx:if="{{!bugData.header}}">空</text>
         </view>
       </view>
     </view>

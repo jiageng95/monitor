@@ -1,7 +1,12 @@
 //app.js
-import debug from './libs/debug.js'
-debug.config.appKey = 'wx09aa326f2ed38651'
-debug.config.appName = '个人'
+import Debug from './libs/debug.js'
+let options = {
+  appKey: 'wx09aa326f2ed38651',
+  appName: '个人',
+  debug: false,
+  ignoreCode: [200, 1004, 1007]
+}
+let debug = new Debug(options)
 
 App({
   onLaunch: function () {
