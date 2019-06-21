@@ -1,32 +1,40 @@
-// const URL = 'https://www.api.yuncjs.cn/debug/submit'
-const URL = 'http://127.0.0.1:7001/debug/submit'
+const SUBMIT_URL = 'debug/submit'
+const NOTIFY_URL = 'debug/notify'
 const originApp = App // 保存原有的App方法
 const originPage = Page // 保存原有的Page方法
 const originRequest = wx.request // 保存原有的request方法
 
 class debugLog {
-  constructor(options) {
+  constructor(options = {}) {
     // super()
-    this.breadcrumbs = []
     this.config = {
       appKey: '', // 小程序的appKey
       appName: 'test', // 小程序的名字
       debug: false, // 是否为调试模式,默认为false,即开启监控
-      ignoreCode: [] // 忽略的code码数组,即服务端返回的code码不存在与ignoreCode中,则上报
+      ignoreCode: [], // 忽略的code码数组,即服务端返回的code码不存在与ignoreCode中,则上报
+      ignoreApp: false, // 忽略对App方法的监控
+      env: 'prod', // 接口环境
+      ignoreConsole: true // 不劫持console.log
     }
     Object.assign(this.config, options)
+    this.breadcrumbs = []
+    this.logArr = [] // 记录console.log
+    this.notifyQueue = [] // 待上报的log队列
+    this.baseURL = this.config.env === 'dev' ? 'http://127.0.0.1:7001/' : 'https://www.api.yuncjs.cn/'
+    this.startTime = Math.floor(+new Date() / 1000)
     this.systemInfo = this.getSystemInfo()
     if (!this.config.debug) {
       this.interceptApp()
       this.interceptPage()
       this.interceptRequest()
+      !this.config.ignoreConsole && this.interceptConsole()
     }
   }
   // 劫持小程序App方法
   interceptApp() {
     const _self = this
     App = function (app) {
-      let methodArr = ['onLaunch', 'onShow', 'onHide', 'onError']
+      let methodArr = _self.config.ignoreApp ? ['onError'] : ['onLaunch', 'onShow', 'onHide', 'onError']
       methodArr.forEach(methodName => {
         let defineMethod = app[methodName] // 保存用户定义的方法
         app[methodName] = function (options) {
@@ -54,8 +62,7 @@ class debugLog {
       Object.keys(page).forEach((methodName) => {
         typeof page[methodName] === 'function' && this.recordPageFn(page, methodName)
       })
-      // 强制记录onReady 和 onLoad
-      page.onReady || this.recordPageFn(page, 'onReady')
+      // 强制记录onLoad
       page.onLoad || this.recordPageFn(page, 'onLoad')
       return originPage(page)
     }
@@ -150,10 +157,30 @@ class debugLog {
       Object.assign(data, errRow)
     }
     originRequest({
-      url: URL,
+      url: this.baseURL + SUBMIT_URL,
       data: data,
-      method: 'POST'
+      method: 'POST',
+      success: () => {
+        this.breadcrumbs = []
+      }
     })
+  }
+  // 上报console
+  notifyConsole() {
+    while (this.notifyQueue.length) {
+      let logArr = this.notifyQueue.shift()
+      let data = {
+        logArr,
+        appKey: this.config.appKey,
+        createTime: Math.floor(+new Date() / 1000)
+      }
+      originRequest({
+        url: this.baseURL + NOTIFY_URL,
+        data: data,
+        method: 'POST',
+        success: () => { }
+      })
+    }
   }
 
   // 获取系统信息
@@ -181,9 +208,9 @@ class debugLog {
     const _self = this
     const defineMethod = page[methodName]
     page[methodName] = function () {
-      if (methodName === 'onLoad' || methodName === 'onShow') {
-        _self.activePage = _self.getActivePage()
-      }
+      // if (methodName === 'onLoad' || methodName === 'onShow') {
+      _self.activePage = _self.getActivePage()
+      // }
       let breadcrumb = {
         type: 'function',
         time: Math.floor(+new Date() / 1000),
@@ -195,6 +222,38 @@ class debugLog {
       methodName === 'onLoad' && (breadcrumb.args = arguments)
       _self.pushToBreadCrumbs(breadcrumb)
       return defineMethod && defineMethod.apply(this, arguments)
+    }
+  }
+
+  // 劫持console.log
+  interceptConsole() {
+    const logFn = console.log
+    const _self = this
+    console.log = function (...args) {
+      let logs = args.map(item => {
+        if (typeof item === 'object') {
+          return Object.keys(item).length > 10 ? Object.prototype.toString.call(item) : JSON.stringify(item)
+        }
+        return item
+      })
+      logs = logs.join('    ')
+      if (logs.includes('request begin') || logs.includes('request success')) {
+        return logFn && logFn.apply(this, args)
+      }
+      let endTime = Math.floor(+new Date() / 1000)
+      let timeStep = 60 * 10
+      let oLog = {
+        createTime: endTime,
+        logs
+      }
+      _self.logArr.push(oLog)
+      if (_self.logArr.length >= 30 || (endTime - _self.startTime) === timeStep) {
+        _self.startTime = endTime
+        _self.notifyQueue.push(JSON.parse(JSON.stringify(_self.logArr)))
+        _self.logArr = []
+        _self.notifyConsole()
+      }
+      return logFn && logFn.apply(this, args)
     }
   }
 }

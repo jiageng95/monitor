@@ -16,7 +16,8 @@ Page({
     pageLimit: 10,
     counts: 0,
     nodata: false,
-    appKey: ''
+    appKey: '',
+    title: ''
   },
   // 重置表单
   resetForm: function () {
@@ -70,14 +71,18 @@ Page({
       if (res.data.bugList.length < this.data.pageLimit) {
         this.setData({ nodata: true })
       }
-      console.log('title', title)
       this.setData({ bugList: newBugList, counts: res.data.counts, title })
     })
   },
   jumpDetail: function (e) {
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '../bugDetail/bugDetail?id=' + id,
+      url: '../bugDetail/bugDetail?id=' + id
+    })
+  },
+  jumpLogs: function () {
+    wx.navigateTo({
+      url: '../logs/logs?appKey=' + this.data.appKey
     })
   },
 

@@ -5,6 +5,7 @@
     <view class="type-list">
       <view class="item {{type === index ? 'cur' : ''}}" wx:for="{{typeList}}" wx:key="{{index}}" bindtap="changeType" data-type="{{index}}">{{item}}</view>
     </view>
+    <view class="logBtn" bindtap="jumpLogs">日志</view>
   </view>
   <block wx:for="{{bugList}}" wx:key="{{index}}">
     <text class="list-date" wx:if="{{item.date}}">{{item.date}}</text>

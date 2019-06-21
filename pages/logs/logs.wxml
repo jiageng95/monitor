@@ -1,0 +1,10 @@
+<!--pages/logs/logs.wxml-->
+<view class="logs">
+  <view class="logs-list">
+    <view class="logs-item" wx:for="{{logList}}" wx:key="{{index}}">
+      <text class="item-tit">{{item.createTime}}</text>
+      <text class="item-txt {{item.hide ? 'hide' : ''}}">{{item.logs}}</text>
+      <view class="more" wx:if="{{item.hide}}" bindtap="showMore" data-index="{{index}}"></view>
+    </view>
+  </view>
+</view>

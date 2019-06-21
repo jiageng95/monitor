@@ -12,3 +12,4 @@ export const getBugList = (data) => request(baseUrl + '/debug/getBugList', data)
 export const getBugCount = (data) => request(baseUrl + '/debug/getBugCount', data) // 获取bug数量
 export const getBugInfo = (data) => request(baseUrl + '/debug/getBugInfo', data) // 获取bug信息
 export const getAppList = (data) => request(baseUrl + '/debug/getAppList', data) // 获取小程序列表
+export const getLogList = (data) => request(baseUrl + '/debug/getLogList', data) // 获取log列表

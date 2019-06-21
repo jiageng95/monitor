@@ -21,6 +21,10 @@ Page({
       bugData.createTime = formatTime(new Date(bugData.createTime * 1000))
       bugData.header = bugData.header && Object.keys(bugData.header).length ? bugData.header : null
       bugData.data = bugData.data && Object.keys(bugData.data).length ? bugData.data : null
+      bugData.breadcrumbs.forEach(item => {
+        item.params = item.query || item.options
+        if (item.params && !Object.keys(item.params).length) item.params = null
+      })
       this.setData({ bugData })
     })
   },

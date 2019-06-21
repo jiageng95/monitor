@@ -11,12 +11,40 @@
   box-sizing: border-box;
   box-shadow: 0 0 10rpx #ddd;
   margin-bottom: 30rpx;
+  overflow: hidden;
 }
 .bug-info .info-tit {
   font-size: 30rpx;
   color: #4BA0BE;
   margin-bottom: 20rpx;
   display: block;
+}
+.bug-info .stack {
+  float: left;
+  border-left: 1rpx solid #ccc;
+  position: relative;
+  width: 98%;
+}
+.bug-info .stack::before {
+  content : '';
+  width: 15rpx;
+  height: 15rpx;
+  background: #4BA0BE;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: -8rpx;
+}
+.bug-info .stack .info-list {
+  float: right;
+  width: 90%;
+  padding: 20rpx;
+  border: 1rpx solid #4BA0BE;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+}
+.bug-info .stack .list-item.last {
+  margin-bottom: 0;
 }
 .bug-info .info-list {
   display: flex;

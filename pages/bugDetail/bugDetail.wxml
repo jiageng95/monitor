@@ -1,27 +1,13 @@
 <!--pages/bugDetail/bugDetail.wxml-->
 <view class="bugDetail">
-  <!-- 概要信息 -->
-  <view class="bug-info">
-    <text class="info-tit">概要信息</text>
-    <view class="info-list">
-      <view class="list-item">
-        <view class="item-l">名称</view>
-        <view class="item-r">{{bugData.appName}}</view>
-      </view>
-      <view class="list-item">
-        <view class="item-l">appId</view>
-        <view class="item-r">{{bugData.appKey}}</view>
-      </view>
-      <view class="list-item">
-        <view class="item-l">时间</view>
-        <view class="item-r">{{bugData.createTime}}</view>
-      </view>
-    </view>
-  </view>
   <!-- 错误信息 -->
   <view class="bug-info">
     <text class="info-tit">错误信息</text>
     <view class="info-list" wx:if="{{bugData.type === 1}}">
+      <view class="list-item">
+        <view class="item-l">时间</view>
+        <view class="item-r">{{bugData.createTime}}</view>
+      </view>
       <view class="list-item">
         <view class="item-l">类型</view>
         <view class="item-r">{{bugData.errType}}</view>
@@ -40,6 +26,10 @@
       </view>
     </view>
     <view class="info-list" wx:if="{{bugData.type === 2}}">
+      <view class="list-item">
+        <view class="item-l">时间</view>
+        <view class="item-r">{{bugData.createTime}}</view>
+      </view>
       <view class="list-item">
         <view class="item-l">报错信息</view>
         <view class="item-r error-txt">{{bugData.msg}}</view>
@@ -79,6 +69,50 @@
           </view>
           <text wx:if="{{!bugData.header}}">空</text>
         </view>
+      </view>
+    </view>
+  </view>
+  <!-- 调用栈 -->
+  <view class="bug-info">
+    <text class="info-tit">调用栈</text>
+    <view class="stack" wx:for="{{bugData.breadcrumbs}}" wx:key="{{index}}">
+      <view class="info-list">
+        <view class="list-item">
+          <view class="item-l">来源</view>
+          <view class="item-r">{{item.belong}}</view>
+        </view>
+        <view class="list-item" wx:if="{{item.path || item.route}}">
+          <view class="item-l">页面</view>
+          <view class="item-r">{{item.path || item.route}}</view>
+        </view>
+        <view class="list-item">
+          <view class="item-l">方法</view>
+          <view class="item-r">{{item.method}}</view>
+        </view>
+        <view class="list-item last">
+          <view class="item-l">参数</view>
+          <view class="item-r">
+            <view class="item-txt" wx:for="{{item.params}}" wx:key="{{index}}">
+              <text class="header-tit">{{index}}:</text>
+              <text class="header-txt">{{item}}</text>
+            </view>
+            <text wx:if="{{!item.params}}">空</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 概要信息 -->
+  <view class="bug-info">
+    <text class="info-tit">概要信息</text>
+    <view class="info-list">
+      <view class="list-item">
+        <view class="item-l">名称</view>
+        <view class="item-r">{{bugData.appName}}</view>
+      </view>
+      <view class="list-item">
+        <view class="item-l">appId</view>
+        <view class="item-r">{{bugData.appKey}}</view>
       </view>
     </view>
   </view>

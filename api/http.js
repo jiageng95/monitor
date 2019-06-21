@@ -17,7 +17,7 @@ function request (url, data = {}, method) {
       data: data,
       method: method,
       success: res => {
-        if (res.data.status === 403 || res.data.code === 1004) {
+        if (res.data.code === 403 || res.data.code === 1004) {
           wx.showToast({
             title: '请先登录',
             icon: 'none',

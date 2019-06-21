@@ -35,7 +35,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -60,6 +60,13 @@
 					"name": "bug详情",
 					"pathName": "pages/bugDetail/bugDetail",
 					"query": "id=796",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "日志",
+					"pathName": "pages/logs/logs",
+					"query": "appKey=wx09aa326f2ed38651",
 					"scene": null
 				}
 			]
